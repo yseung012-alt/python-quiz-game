@@ -15,4 +15,18 @@ class QuizGame:
     def add_quiz(self, question, answer):
         quiz = Quiz(question, answer)
         self.quizzes.append(quiz)
-        
+    def play_quiz(self):
+        score = 0
+
+        for quiz in self.quizzes:
+            print(quiz.question)
+            user_answer = input("정답 입력: ")
+
+            if user_answer.strip().lower() == quiz.answer.lower():
+                print("정답입니다!")
+                score += 1
+            else:
+                print("오답입니다!")
+                print("정답:", quiz.answer)
+
+        print("최종 점수:", score)
