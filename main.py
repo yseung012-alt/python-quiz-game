@@ -28,8 +28,11 @@ while True:
             print("문제와 정답은 비워둘 수 없습니다.")
 
     elif choice == "3":
-        for number, quiz in enumerate(game.quizzes, start=1):
-            print(f"{number}. {quiz.question}")
+        if not game.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+        else:
+            for number, quiz in enumerate(game.quizzes, start=1):
+                print(f"{number}. {quiz.question}")
 
     elif choice == "4":
         game.show_best_score()
