@@ -30,3 +30,9 @@ class QuizGame:
                 print("정답:", quiz.answer)
 
         print("최종 점수:", score)
+
+        if score > self.best_score:
+            self.best_score = score
+            print("새로운 최고 점수입니다!")
+    def show_best_score(self):
+        print("현재 최고 점수:", self.best_score)
