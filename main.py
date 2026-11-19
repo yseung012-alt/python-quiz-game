@@ -1,5 +1,9 @@
+from quiz_game import QuizGame
+
+game = QuizGame()
+
 while True:
-    print("===== Python 기초 퀴즈 게임 =====")
+    print("\n===== Python 기초 퀴즈 게임 =====")
     print("1. 퀴즈 풀기")
     print("2. 퀴즈 추가하기")
     print("3. 퀴즈 목록 보기")
@@ -10,15 +14,29 @@ while True:
     choice = input("메뉴 번호를 선택하세요: ")
 
     if choice == "1":
-        print("퀴즈를 시작합니다!")
+        game.play_quiz()
+
     elif choice == "2":
-        print("새로운 퀴즈를 추가합니다!")
+        question = input("새로운 문제를 입력하세요: ").strip()
+        answer = input("정답을 입력하세요: ").strip()
+
+        if question and answer:
+            game.add_quiz(question, answer)
+            game.save_game()
+            print("퀴즈가 추가되었습니다!")
+        else:
+            print("문제와 정답은 비워둘 수 없습니다.")
+
     elif choice == "3":
-        print("퀴즈 목록을 보여줍니다!")
+        for number, quiz in enumerate(game.quizzes, start=1):
+            print(f"{number}. {quiz.question}")
+
     elif choice == "4":
-        print("최고 점수를 확인합니다!")
+        game.show_best_score()
+
     elif choice == "5":
         print("게임을 종료합니다!")
         break
+
     else:
         print("잘못된 입력입니다. 1~5 사이의 숫자를 입력하세요.")
